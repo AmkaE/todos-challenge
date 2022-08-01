@@ -1,0 +1,94 @@
+:root {
+	--tan: #e6e2d3;
+	--trafficWhite: #f0f0f0;
+	--yellowGreen: #4caf50;
+	--vermillionRed: #c94c4c;
+	--blue: #008cba;
+}
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+/* utility classes */
+.hidden {
+	display: none;
+}
+
+#root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	max-width: 500px;
+	margin: auto;
+	gap: 2rem;
+	padding: 0.5rem;
+}
+
+.add-todo-form__input,
+.add-todo-form__btn {
+	padding: 0.7rem;
+	font-size: 1rem;
+	border-radius: 5px;
+	border: 1px solid var(--trafficWhite);
+}
+
+.add-todo-form__btn {
+	background-color: var(--blue);
+	color: var(--trafficWhite);
+	border: none;
+}
+
+.container {
+	border: 2px solid var(--tan);
+	border-radius: 5px;
+	width: 100%;
+	padding: 0.5rem;
+}
+
+.todos-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.todos-listItem {
+	background: var(--tan);
+	padding: 0.5em;
+	border-radius: 5px;
+}
+
+.edit-todo-form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.todos-listItem__edit-icon svg,
+.todos-listItem__delete-icon svg {
+	width: 35px;
+	height: 30px;
+	background: var(--blue);
+	border-radius: 5px;
+	padding: 0.2rem;
+	cursor: pointer;
+}
+
+.todos-listItem__delete-icon svg {
+	background: var(--vermillionRed);
+}

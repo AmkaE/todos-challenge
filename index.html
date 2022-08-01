@@ -12,8 +12,20 @@
 		<title>Todos</title>
 	</head>
 	<body>
-		<div id="root"></div>
+		<div id="root">
+			<form class="add-todo-form">
+				<input type="text" class="add-todo-form__input" />
+				<button class="btn add-todo-form__btn">submit</button>
+			</form>
+
+			<div class="container">
+				<div class="todos">
+					<ul class="todos-list"></ul>
+				</div>
+			</div>
+		</div>
+
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script src="./src/main.js"></script>
+		<script src="./src/main.js" type="module"></script>
 	</body>
 </html>
