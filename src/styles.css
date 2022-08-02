@@ -79,16 +79,39 @@ li {
 	align-items: center;
 }
 
-.todos-listItem__edit-icon svg,
-.todos-listItem__delete-icon svg {
+.icons {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.edit-btn-icon,
+.delete-btn-icon {
 	width: 35px;
 	height: 30px;
 	background: var(--blue);
 	border-radius: 5px;
 	padding: 0.2rem;
 	cursor: pointer;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
 }
 
-.todos-listItem__delete-icon svg {
+.edit-btn-icon svg path,
+.delete-btn-icon svg path {
+	fill: #fff;
+}
+
+.delete-btn-icon {
 	background: var(--vermillionRed);
+}
+
+.btn {
+	transition: opacity 0.1s linear;
+}
+
+.btn:hover {
+	opacity: 0.7;
 }
