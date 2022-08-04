@@ -1,5 +1,5 @@
 import { Dom } from '../DOM.js';
-import { listItems, todos } from '../data.js';
+import { listItems } from '../data.js';
 
 export function generateTodoItemsTemplate(todosArr) {
 	let result = [];

@@ -1,17 +1,9 @@
 import { Dom } from '../DOM.js';
-import { todos, listItems } from '../data.js';
 import {
-	reRenderTodoListItems,
-	renderTodoListItems,
 	createTodo,
-	renderToDom,
-} from '../main.js';
-import {
-	getTodos,
-	deleteTodo,
-	completeTodo,
-	updateTodo,
-} from './apis/todosApiCalls.js';
+	completeTodoItem,
+	deleteTodoItem,
+} from './todosActions.js';
 
 export function submitFormEvent() {
 	Dom.elements.formElement.addEventListener('submit', e => {
@@ -19,29 +11,16 @@ export function submitFormEvent() {
 		const input = Dom.elements.addTodoForm;
 		createTodo(input.value);
 
-		reRenderTodoListItems();
-
 		input.value = '';
 	});
 }
 
-// not done yet
 export function addEditEvent() {
-	document.querySelectorAll('.todos-listItem__edit-icon').forEach(editIcon => {
-		editIcon.addEventListener('click', e => {
-			// e.preventDefault();
-			//
-		});
-	});
-
 	Dom.elements.editTodoForms = document.querySelectorAll('.edit-todo-form');
 	const editButtonIcons = document.querySelectorAll('.edit-btn-icon');
 	const deleteButtonIcons = document.querySelectorAll('.delete-btn-icon');
-	//
 
-	// Dom.elements.editTodoForms.forEach((editTodoForms, i) => {})
-	// editTodoForms.addEventListener('submit', e => {});
-
+	// not done yet
 	editButtonIcons.forEach((editButtonIcon, i) => {
 		editButtonIcon.addEventListener('click', e => {
 			if (
@@ -59,11 +38,12 @@ export function addEditEvent() {
 					editButtonIcons[i].parentElement.previousElementSibling;
 
 				const id = +editTodoInput.name.slice(6);
-				completeTodo(id);
+				completeTodoItem(id);
 			}
 		});
 	});
 
+	// done
 	deleteButtonIcons.forEach((deleteButtonIcon, i) => {
 		deleteButtonIcon.addEventListener('click', e => {
 			if (
@@ -75,7 +55,7 @@ export function addEditEvent() {
 					deleteButtonIcons[i].parentElement.previousElementSibling;
 				const id = +editTodoInput.name.slice(6);
 
-				deleteTodo(id);
+				deleteTodoItem(id);
 			}
 		});
 	});
