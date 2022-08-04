@@ -7,8 +7,16 @@ import {
 	updateTodoItem,
 } from './todosActions.js';
 
+// a helper function to adds event on the specified element
+const addEvent = (element, eventName, callbackFn) => {
+	element.addEventListener(eventName, callbackFn);
+};
+
+// listens for submit event when the user submits add todo form.
 export function submitFormEvent() {
-	Dom.elements.formElement.addEventListener('submit', e => {
+	const addTodoForm = Dom.elements.formElement;
+
+	addEvent(addTodoForm, 'submit', e => {
 		e.preventDefault();
 		const input = Dom.elements.addTodoForm;
 		createTodo(input.value);
@@ -17,14 +25,16 @@ export function submitFormEvent() {
 	});
 }
 
+// adds events to the buttons(delete btn, and edit btn)
 export function addBtnEvents() {
 	Dom.elements.editTodoForms = document.querySelectorAll('.edit-todo-form');
 	const editButtonIcons = document.querySelectorAll('.edit-btn-icon');
 	const deleteButtonIcons = document.querySelectorAll('.delete-btn-icon');
 	const titles = document.querySelectorAll('.title');
 
+	// listens for click event on the todo items title
 	titles.forEach((title, i) => {
-		title.addEventListener('click', () => {
+		addEvent(title, 'click', () => {
 			// select the input that's inside the li form
 			const editTodoInput = titles[i].nextElementSibling;
 
@@ -34,8 +44,9 @@ export function addBtnEvents() {
 		});
 	});
 
+	// listens for click event on the edit button
 	editButtonIcons.forEach((editButtonIcon, i) => {
-		editButtonIcon.addEventListener('click', e => {
+		addEvent(editButtonIcon, 'click', e => {
 			if (
 				e.target.nodeName === 'BUTTON' ||
 				e.target.nodeName === 'svg' ||
@@ -52,7 +63,7 @@ export function addBtnEvents() {
 
 				const editTodoForm = editButtonIcons[i].parentElement.parentElement;
 
-				editTodoForm.addEventListener('submit', e => {
+				addEvent(editTodoForm, 'submit', e => {
 					e.preventDefault();
 					editTodoInput.value;
 					updateTodoItem(id, editTodoInput.value);
@@ -61,8 +72,9 @@ export function addBtnEvents() {
 		});
 	});
 
+	// listens for click event on the delete button
 	deleteButtonIcons.forEach((deleteButtonIcon, i) => {
-		deleteButtonIcon.addEventListener('click', e => {
+		addEvent(deleteButtonIcon, 'click', e => {
 			if (
 				e.target.nodeName === 'BUTTON' ||
 				e.target.nodeName === 'svg' ||

@@ -7,10 +7,12 @@ import { todos, completedTodos, listItems } from '../data.js';
 import { getTodos } from './apis/todosApiCalls.js';
 import { addBtnEvents } from './events.js';
 
+// renders the childElement to parentElement
 export function renderToDom(parentElement, childElement) {
 	parentElement.append(childElement);
 }
 
+// gets todo items renders the page
 export async function renderTodoListItems(listItemsArr, completedistItemsArr) {
 	getTodos()
 		.then(todosData => {

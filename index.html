@@ -4,24 +4,22 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script
-			src="https://kit.fontawesome.com/414398dfb9.js"
-			crossorigin="anonymous"
-		></script>
 		<link rel="stylesheet" href="./src/styles.css" />
 		<title>Todos</title>
 	</head>
 	<body>
 		<div id="root">
 			<form class="add-todo-form">
-				<input type="text" class="add-todo-form__input" />
+				<input type="text" class="add-todo-form__input" required />
 				<button class="btn add-todo-form__btn">submit</button>
 			</form>
 
 			<div class="container">
+				<!-- append here on the uncompleted todos -->
 				<div class="todos">
 					<ul class="todos-list"></ul>
 				</div>
+				<!-- append here on the completed todos -->
 				<div class="completed-todos">
 					<ul class="completed-todos-list"></ul>
 				</div>
