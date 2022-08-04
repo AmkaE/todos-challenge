@@ -1,1 +1,1 @@
-this app is still in developement stage.
+The app is now completed!
