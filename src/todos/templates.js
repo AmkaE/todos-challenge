@@ -37,6 +37,7 @@ export function generateTodoItemsTemplate(todosArr) {
 						${todoItem.isEditing ? '' : 'hidden'}"
             name="input-${todoItem.id}"
 						value="${todoItem.title}"
+						required
           />
           <span class="icons">
             <button class="btn edit-btn-icon" type="${
