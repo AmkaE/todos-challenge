@@ -1,7 +1,11 @@
 import { Dom } from '../DOM.js';
 import { listItems, completedListItems } from '../data.js';
 
+// genereate a list item(s) based on the length of completed todos array
 export function generateTodoItemsTemplate(todosArr) {
+	// this array will hold the generate list item(s) if
+	// the completed todos array is not empty but if its empty
+	// it will hold the a paragraph element
 	let result = [];
 	result.length = 0;
 
@@ -49,9 +53,12 @@ export function generateTodoItemsTemplate(todosArr) {
 			result.push(listItem);
 		});
 	}
+	// this will push the result into the list items array
+	// whether it contains the paragraph or generated list item(s)
 	listItems.push(...result);
 }
 
+//  generate a list item(s) based on the length of uncompleted todos array
 export function generateCompletedTodoItemsTemplate(completedTodosArr) {
 	completedListItems.length = 0;
 	completedTodosArr.forEach(completedTodoItem => {

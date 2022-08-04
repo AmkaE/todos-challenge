@@ -7,6 +7,7 @@ import {
 	updateTodoItem,
 } from './todosActions.js';
 
+// listens for submit event when the user submits add todo form.
 export function submitFormEvent() {
 	Dom.elements.formElement.addEventListener('submit', e => {
 		e.preventDefault();
@@ -17,12 +18,14 @@ export function submitFormEvent() {
 	});
 }
 
+// adds events to the buttons(delete btn, and edit btn)
 export function addBtnEvents() {
 	Dom.elements.editTodoForms = document.querySelectorAll('.edit-todo-form');
 	const editButtonIcons = document.querySelectorAll('.edit-btn-icon');
 	const deleteButtonIcons = document.querySelectorAll('.delete-btn-icon');
 	const titles = document.querySelectorAll('.title');
 
+	// listens for click event on the todo items title
 	titles.forEach((title, i) => {
 		title.addEventListener('click', () => {
 			// select the input that's inside the li form
@@ -34,6 +37,7 @@ export function addBtnEvents() {
 		});
 	});
 
+	// listens for click event on the edit button
 	editButtonIcons.forEach((editButtonIcon, i) => {
 		editButtonIcon.addEventListener('click', e => {
 			if (
@@ -61,6 +65,7 @@ export function addBtnEvents() {
 		});
 	});
 
+	// listens for click event on the delete button
 	deleteButtonIcons.forEach((deleteButtonIcon, i) => {
 		deleteButtonIcon.addEventListener('click', e => {
 			if (
