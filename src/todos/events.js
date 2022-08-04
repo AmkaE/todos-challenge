@@ -7,7 +7,7 @@ import {
 	updateTodoItem,
 } from './todosActions.js';
 
-// a helper function to adds event on the specified element
+// a helper function that adds event on the specified element
 const addEvent = (element, eventName, callbackFn) => {
 	element.addEventListener(eventName, callbackFn);
 };
