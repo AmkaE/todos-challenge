@@ -1,26 +1,44 @@
 import { Dom } from '../DOM.js';
-import { generateTodoItemsTemplate } from './templates.js';
-import { todos } from '../data.js';
+import {
+	generateTodoItemsTemplate,
+	generateCompletedTodoItemsTemplate,
+} from './templates.js';
+import { todos, completedTodos, listItems } from '../data.js';
 import { getTodos } from './apis/todosApiCalls.js';
-import { addEditEvent } from './events.js';
+import { addBtnEvents } from './events.js';
 
 export function renderToDom(parentElement, childElement) {
 	parentElement.append(childElement);
 }
 
-export async function renderTodoListItems(listItemsArr) {
+export async function renderTodoListItems(listItemsArr, completedistItemsArr) {
 	getTodos()
-		.then(data => {
+		.then(todosData => {
+			completedTodos.length = 0;
 			todos.length = 0;
-			todos.push(...data);
+			listItems.length = 0;
+
+			todos.push(...todosData.filter(todoData => todoData.completed === false));
+			completedTodos.push(
+				...todosData.filter(todoData => todoData.completed === true),
+			);
 		})
 		.then(() => {
 			Dom.elements.listItemsContainer.textContent = '';
+			Dom.elements.completedListItemsContainer.textContent = '';
 			generateTodoItemsTemplate(todos);
+			generateCompletedTodoItemsTemplate(completedTodos);
 
 			listItemsArr.forEach(listItem => {
 				renderToDom(Dom.elements.listItemsContainer, listItem);
 			});
-			addEditEvent();
+
+			completedistItemsArr.forEach(completedListItem => {
+				renderToDom(
+					Dom.elements.completedListItemsContainer,
+					completedListItem,
+				);
+			});
+			addBtnEvents();
 		});
 }

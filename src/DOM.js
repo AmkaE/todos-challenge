@@ -4,6 +4,9 @@ export const Dom = {
 		listItemsContainer: document.querySelector('.todos-list'),
 		addTodoForm: document.querySelector('.add-todo-form__input'),
 		noTask: document.createElement('p'),
+		completedListItemsContainer: document.querySelector(
+			'.completed-todos-list',
+		),
 	},
 	classes: {
 		todosListItem: 'todos-listItem',

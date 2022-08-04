@@ -3,6 +3,8 @@ import {
 	createTodo,
 	completeTodoItem,
 	deleteTodoItem,
+	editTodoItem,
+	updateTodoItem,
 } from './todosActions.js';
 
 export function submitFormEvent() {
@@ -15,12 +17,23 @@ export function submitFormEvent() {
 	});
 }
 
-export function addEditEvent() {
+export function addBtnEvents() {
 	Dom.elements.editTodoForms = document.querySelectorAll('.edit-todo-form');
 	const editButtonIcons = document.querySelectorAll('.edit-btn-icon');
 	const deleteButtonIcons = document.querySelectorAll('.delete-btn-icon');
+	const titles = document.querySelectorAll('.title');
 
-	// not done yet
+	titles.forEach((title, i) => {
+		title.addEventListener('click', () => {
+			// select the input that's inside the li form
+			const editTodoInput = titles[i].nextElementSibling;
+
+			// get the id from editTodoInput "name" attribute
+			const id = +editTodoInput.name.slice(6);
+			completeTodoItem(id);
+		});
+	});
+
 	editButtonIcons.forEach((editButtonIcon, i) => {
 		editButtonIcon.addEventListener('click', e => {
 			if (
@@ -28,22 +41,26 @@ export function addEditEvent() {
 				e.target.nodeName === 'svg' ||
 				e.target.nodeName === 'path'
 			) {
-				const titleElement =
-					editButtonIcons[i].parentElement.previousElementSibling
-						.previousElementSibling;
-				const titleText =
-					editButtonIcons[i].parentElement.previousElementSibling
-						.previousElementSibling.innerText;
+				// select the input that's inside the li form
 				const editTodoInput =
 					editButtonIcons[i].parentElement.previousElementSibling;
 
+				// get the id from editTodoInput "name" attribute
 				const id = +editTodoInput.name.slice(6);
-				completeTodoItem(id);
+
+				editTodoItem(id);
+
+				const editTodoForm = editButtonIcons[i].parentElement.parentElement;
+
+				editTodoForm.addEventListener('submit', e => {
+					e.preventDefault();
+					editTodoInput.value;
+					updateTodoItem(id, editTodoInput.value);
+				});
 			}
 		});
 	});
 
-	// done
 	deleteButtonIcons.forEach((deleteButtonIcon, i) => {
 		deleteButtonIcon.addEventListener('click', e => {
 			if (
@@ -51,10 +68,11 @@ export function addEditEvent() {
 				e.target.nodeName === 'svg' ||
 				e.target.nodeName === 'path'
 			) {
-				const editTodoInput =
-					deleteButtonIcons[i].parentElement.previousElementSibling;
-				const id = +editTodoInput.name.slice(6);
-
+				// select the input that's inside the li form
+				const listItem =
+					deleteButtonIcons[i].parentElement.parentElement.parentElement;
+				// get the id from editTodoInput "name" attribute
+				const id = +listItem.id.slice(3);
 				deleteTodoItem(id);
 			}
 		});

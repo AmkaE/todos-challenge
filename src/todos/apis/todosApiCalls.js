@@ -14,6 +14,7 @@ export const updateTodo = async (id, updateTitle) => {
 	const res = await axios.put(`${BASE_URL}/todos/${id}`, {
 		title: updateTitle,
 		completed: false,
+		isEditing: false,
 	});
 	return res.data;
 };
@@ -21,6 +22,13 @@ export const updateTodo = async (id, updateTitle) => {
 export const completeTodo = async id => {
 	const res = await axios.patch(`${BASE_URL}/todos/${id}`, {
 		completed: true,
+	});
+	return res.data;
+};
+
+export const editTodo = async id => {
+	const res = await axios.patch(`${BASE_URL}/todos/${id}`, {
+		isEditing: true,
 	});
 	return res.data;
 };

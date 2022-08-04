@@ -29,6 +29,17 @@ li {
 	display: none;
 }
 
+.line-through {
+	text-decoration: line-through;
+	opacity: 0.7;
+}
+
+.no-active-task {
+	text-align: center;
+	font-size: 1.2rem;
+	font-width: bold;
+}
+
 #root {
 	display: flex;
 	justify-content: center;
@@ -41,11 +52,16 @@ li {
 }
 
 .add-todo-form__input,
-.add-todo-form__btn {
+.add-todo-form__btn,
+.edit-todo-form__input {
 	padding: 0.7rem;
 	font-size: 1rem;
 	border-radius: 5px;
 	border: 1px solid var(--trafficWhite);
+}
+
+.edit-todo-form__input {
+	padding: 0.5rem;
 }
 
 .add-todo-form__btn {
@@ -61,7 +77,8 @@ li {
 	padding: 0.5rem;
 }
 
-.todos-list {
+.todos-list,
+.completed-todos-list {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -73,7 +90,8 @@ li {
 	border-radius: 5px;
 }
 
-.edit-todo-form {
+.edit-todo-form,
+.completed-todo-item {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -114,4 +132,12 @@ li {
 
 .btn:hover {
 	opacity: 0.7;
+}
+
+.title {
+	cursor: pointer;
+}
+
+.completed-todos {
+	margin-top: 3em;
 }
